@@ -1,0 +1,13 @@
+<div class="row justify-content-center">
+  <div class="col-4">
+    <form class="form" [formGroup]="loginform" class="form card" (submit)="submitLogin()">
+      <p class="display-6 mb-3 text-center">Please Login</p>
+      <input formControlName="email" type="text" class="form-control p-3 mb-3" placeholder="Username"/>
+      <input formControlName="password" type="password" class="form-control  p-3 mb-3" placeholder="Password"/>
+      <button type="submit" class="btn btn-block btn-primary p-3 mb-lg-3" [disabled]="!loginform.valid">Login</button>
+    </form>
+  </div>
+</div>
+
+
+
