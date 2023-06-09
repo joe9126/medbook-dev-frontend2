@@ -18,7 +18,7 @@ const routes : Routes = [
     ]
   },
 
-  {path: '', component : SecureComponent,
+  {path: 'secure', component : SecureComponent,
   children:[
     {path:'register',component:RegisterComponent}
   ]
