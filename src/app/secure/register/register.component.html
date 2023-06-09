@@ -2,37 +2,36 @@
   <div class="col-5 pl-10">
     <div class="card pl-5 pr-20 ml-5 ml-5">
     <h3 class="dsplay-6">{{ pagetitle }}</h3><hr class="hr">
-    <form  (submit)="registerPatient()">
-      <div class="form-group">
+    <form  (submit)="registerPatient()" [formGroup]="registerPatientform">
+      <div class="form-group mb-3">
 
         <input type="text" formControlName="name" class="form-control"  placeholder="Full Name">
       </div>
-      <div class="form-group">
+      <div class="form-group mb-3">
 
-        <input type="date" formControlName="dob" class="form-control"  placeholder="dd/mm/yyy">
+        <input type="date" formControlName="dob" class="form-control"  placeholder="Dat of Birth">
       </div>
-      <div class="form-group">
+      <div class="form-group mb-3">
 
         <select class="form-control" formControlName="gender">
-          <option value="">Select Gender</option>
+          <option value="">Select Gender ></option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
         </select>
       </div>
-      <div class="form-group">
-
+      <div class="form-group mb-3">
         <select class="form-control" formControlName="servicetype">
-          <option value="">Select Service</option>
+          <option value="">Select Service ></option>
           <option value="Outpatient">Outpatient</option>
           <option value="Inpatient">Inpatient</option>
         </select>
-
-      <div class="form-group">
+      </div>
+      <div class="form-group mb-3">
 
         <textarea class="form-control"  placeholder="General Comments" rows="3" formControlName="comment"></textarea>
       </div>
-     </div>
-     <div class="form-group">
+
+     <div class="form-group mb-3">
       <button type="submit" class="btn btn-primary btn-block w-100 ml-10 mr-10" [disabled]="!registerPatientform.valid">register</button>
      </div>
 </form>

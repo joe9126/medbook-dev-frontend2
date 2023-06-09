@@ -5,20 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { PublicModule } from './public/public.module';
-import { SecureComponent } from './secure/secure.component';
+
 import { RouterModule } from '@angular/router';
+import { SecureModule } from './secure/secure.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SecureComponent
+
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     RouterModule,
-    PublicModule
+    PublicModule,
+    SecureModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
