@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit{
   this.http.get("http://localhost:8000/patients",{headers:this.headers}).subscribe(
     result=>{
      this.patients = result;
-     //console.log(this.patients);
+     this.registerPatientform.reset();
     },
     error=>{
       console.log(error);
