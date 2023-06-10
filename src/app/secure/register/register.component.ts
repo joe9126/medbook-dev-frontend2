@@ -48,7 +48,10 @@ export class RegisterComponent implements OnInit{
   this.http.post("http://localhost:8000/register_patient",patientdata,{headers:this.headers}).subscribe(
     (result:any)=>{
      this.patients = result;
-     console.log(result.patients);
+
+     this.registerPatientform.reset();
+     let el = document.getElementById('patientslist');
+     el?.scrollIntoView({behavior:"smooth"});
     },
     error=>{
       console.log(error);
@@ -58,15 +61,11 @@ export class RegisterComponent implements OnInit{
 
  }
 
- onFocusLost(event:any){
-
- }
 
  getPatients(){
   this.http.get("http://localhost:8000/patients",{headers:this.headers}).subscribe(
     result=>{
      this.patients = result;
-     this.registerPatientform.reset();
     },
     error=>{
       console.log(error);
