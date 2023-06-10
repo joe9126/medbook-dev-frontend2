@@ -11,9 +11,15 @@ export class RegisterComponent implements OnInit{
  pagetitle = "Register Patient";
  registerPatientform : FormGroup;
  patients : any;
+ headers : HttpHeaders;
  constructor(private fb:FormBuilder, private http: HttpClient){
   this.registerPatientform = this.fb.group({});
-  this.patients ={};
+
+ this.headers = new HttpHeaders({
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+   });
+
+   this.patients =this.getPatients();
  }
 
  ngOnInit() {
@@ -24,6 +30,8 @@ export class RegisterComponent implements OnInit{
     servicetype:['',Validators.required],
     comment:['',Validators.required]
    });
+
+
  }
 
  registerPatient(){
@@ -35,14 +43,12 @@ export class RegisterComponent implements OnInit{
     servicetype: formData.servicetype,
     comment: formData.comment
   }
-  //console.log(patientdata);
-  const header = new HttpHeaders({
-    'Authorization': `Bearer ${localStorage.getItem('token')}`
-   });
 
-  this.http.post("http://localhost:8000/register_patient",patientdata,{headers:header}).subscribe(
-    result=>{
+
+  this.http.post("http://localhost:8000/register_patient",patientdata,{headers:this.headers}).subscribe(
+    (result:any)=>{
      this.patients = result;
+     console.log(result.patients);
     },
     error=>{
       console.log(error);
@@ -54,5 +60,17 @@ export class RegisterComponent implements OnInit{
 
  onFocusLost(event:any){
 
+ }
+
+ getPatients(){
+  this.http.get("http://localhost:8000/patients",{headers:this.headers}).subscribe(
+    result=>{
+     this.patients = result;
+     //console.log(this.patients);
+    },
+    error=>{
+      console.log(error);
+    }
+  )
  }
 }
