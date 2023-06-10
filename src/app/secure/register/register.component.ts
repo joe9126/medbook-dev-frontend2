@@ -10,8 +10,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit{
  pagetitle = "Register Patient";
  registerPatientform : FormGroup;
+ patients : any;
  constructor(private fb:FormBuilder, private http: HttpClient){
   this.registerPatientform = this.fb.group({});
+  this.patients ={};
  }
 
  ngOnInit() {
@@ -33,20 +35,24 @@ export class RegisterComponent implements OnInit{
     servicetype: formData.servicetype,
     comment: formData.comment
   }
-  console.log(patientdata);
+  //console.log(patientdata);
   const header = new HttpHeaders({
     'Authorization': `Bearer ${localStorage.getItem('token')}`
    });
 
   this.http.post("http://localhost:8000/register_patient",patientdata,{headers:header}).subscribe(
     result=>{
-      console.log(result);
+     this.patients = result;
     },
     error=>{
       console.log(error);
     }
   )
 
+
+ }
+
+ onFocusLost(event:any){
 
  }
 }

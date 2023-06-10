@@ -2,10 +2,12 @@
   <div class="col-6">
     <div class="jumbotron">
       <h1 class="display-4">Clinic Management System</h1>
-      <p class="lead">Welcome</p>
+      <p class="lead text-center">Welcome</p>
       <hr class="my-4">
+     <div *ngIf="!loggedIn">
       <p>Login to get started.</p>
       <a class="btn btn-primary btn-lg" routerLink="/login" role="button">Login</a>
+     </div>
     </div>
   </div>
 </div>

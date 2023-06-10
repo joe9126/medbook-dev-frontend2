@@ -4,12 +4,14 @@
     <h3 class="dsplay-6">{{ pagetitle }}</h3><hr class="hr">
     <form  (submit)="registerPatient()" [formGroup]="registerPatientform">
       <div class="form-group mb-3">
+        <p>
+          Full Name   <input type="text" formControlName="name" class="form-control"  placeholder="Full Name">
+        </p>
 
-        <input type="text" formControlName="name" class="form-control"  placeholder="Full Name">
       </div>
       <div class="form-group mb-3">
 
-        <input type="date" formControlName="dob" class="form-control"  placeholder="Dat of Birth">
+        <input type="text" formControlName="dob" class="form-control"  placeholder="Date of birth" onfocus="(this.type='date')" #dob (focusout)="(onFocusLost(this))">
       </div>
       <div class="form-group mb-3">
 
@@ -36,5 +38,23 @@
      </div>
 </form>
 </div>
+
+<table class="table table-striped table-hover" *ngIf="!patients">
+  <thead>
+    <tr>
+      <th>No</th><th>Name</th><th>D.O.B</th><th>Gender</th><th>Service Type</th><th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let patient of patients; let i = index;" >
+      <td>{{ i }}</td>
+      <td>{{ patient.name }}</td>
+      <td>{{ patient.dob }}</td>
+      <td>{{ patient.gender.gender }}</td>
+      <td>{{ patient.service.type_of_service }}</td>
+      <td>{{ patient.service.comments }}</td>
+    </tr>
+  </tbody>
+</table>
 </div>
 </div>
